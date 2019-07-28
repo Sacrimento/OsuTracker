@@ -19,12 +19,13 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+    await client.change_presence(game=discord.Game(name="Farming Sotarks map"))
+    client.loop.create_task(app.checkTracked(client))
 
 if __name__ == '__main__':
 
     with open('./.secret', 'r') as t:
         TOKEN = t.readline().split(' ')[0]
-    
     app = OsuTracker()
     
     client.run(TOKEN)
